@@ -14,13 +14,20 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    runtimeOnly("org.postgresql:postgresql")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-}
+//    implementation("org.springframework.boot:spring-boot-starter-security")
 
-tasks.withType<Test> {
-    useJUnitPlatform()
+    implementation("org.webjars:bootstrap:5.3.0")
+    runtimeOnly("org.postgresql:postgresql")
+    implementation("jakarta.validation:jakarta.validation-api:3.0.1")
+    implementation("org.hibernate.validator:hibernate-validator:7.0.1.Final")
+
+    implementation("org.projectlombok:lombok:1.18.28")
+    implementation("org.mapstruct:mapstruct:1.5.5.Final")
+    annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
 }

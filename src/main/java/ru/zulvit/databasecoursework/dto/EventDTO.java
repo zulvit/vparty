@@ -1,11 +1,11 @@
-package ru.zulvit.databasecoursework.model;
+package ru.zulvit.databasecoursework.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import org.springframework.stereotype.Component;
 
-@Component
-public class Event {
+public class EventDTO {
+    private long eventId;
+
     @NotBlank(message = "название не может быть пустым")
     @Size(max = 50, min = 4, message = "название должно быть от 4 до 50 символов")
     private String title;
@@ -24,6 +24,13 @@ public class Event {
     @NotBlank(message = "время окончания не может быть пустым")
     private String endTime;
 
+    public long getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(long eventId) {
+        this.eventId = eventId;
+    }
 
     public String getTitle() {
         return title;
@@ -67,7 +74,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event{" +
+        return "EventDTO{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", location='" + location + '\'' +

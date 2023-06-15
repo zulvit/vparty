@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>User Registration</h1>
+    <form th:action="@{/register}" th:object="${user}" method="post">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}">
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></p>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last name:</label>
+            <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
+            <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"></p>
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" class="form-control" id="surname" th:field="*{surname}">
+            <p th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="error"></p>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" th:field="*{email}">
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></p>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" th:field="*{password}">
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></p>
+        </div>
+        <div class="form-group">
+            <label for="birthday">Birthday:</label>
+            <input type="date" class="form-control" id="birthday" th:field="*{birthday}">
+            <p th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" class="error"></p>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    <button onclick="goBack()" class="btn btn-outline-primary">Back</button>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+    <style>
+        .error {
+            color: rgba(255, 0, 0, 0.63);
+        }
+    </style>
+</div>
+</body>
+</html>

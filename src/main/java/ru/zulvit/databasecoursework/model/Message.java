@@ -1,17 +1,11 @@
 package ru.zulvit.databasecoursework.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Messages")
-@Setter
-@Getter
-@ToString
 public class Message {
 
     @Id
@@ -32,4 +26,55 @@ public class Message {
 
     @Column(name = "timestamp", nullable = false)
     private LocalDateTime timestamp;
+
+    public Integer getMessageId() {
+        return messageId;
+    }
+
+    public void setMessageId(Integer messageId) {
+        this.messageId = messageId;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "messageId=" + messageId +
+                ", event=" + event +
+                ", sender=" + sender +
+                ", text='" + text + '\'' +
+                ", timestamp=" + timestamp +
+                '}';
+    }
 }

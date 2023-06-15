@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Event Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 th:text="${event.title}" class="mb-4">Event Details</h1>
+    <div class="card">
+        <div class="card-body">
+            <p><strong>ID:</strong> <span th:text="${event.eventId}">12345</span></p>
+            <p><strong>Description:</strong> <span th:text="${event.description}">Lorem ipsum dolor sit amet</span></p>
+            <p><strong>Location:</strong> <span th:text="${event.location}">New York City</span></p>
+            <p><strong>Start Time:</strong> <span th:text="${event.startTime}">2023-06-15 09:00 AM</span></p>
+            <p><strong>End Time:</strong> <span th:text="${event.endTime}">2023-06-15 05:00 PM</span></p>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
