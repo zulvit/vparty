@@ -2,6 +2,8 @@ package ru.zulvit.databasecoursework.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Events")
 public class Event {
@@ -25,7 +27,17 @@ public class Event {
     @Column(name = "end_time", nullable = false)
     private String endTime;
 
+    @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
+    private List<Message> messages;
 
+    @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
+    private List<Invitation> invitations;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
+    private List<Organizer> organizers;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
+    private List<Photo> photos;
 
     public Long getEventId() {
         return eventId;

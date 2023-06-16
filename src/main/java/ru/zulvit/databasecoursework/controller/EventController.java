@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.zulvit.databasecoursework.dto.EventDTO;
-import ru.zulvit.databasecoursework.model.User;
+import ru.zulvit.databasecoursework.model.Event;
 import ru.zulvit.databasecoursework.service.EventService;
 
 import java.util.List;
@@ -82,20 +82,10 @@ public class EventController {
         return "view-events";
     }
 
-    @GetMapping("/register")
-    public String registerUser(Model model) {
-        model.addAttribute("user", new User());
-        return "register";
+    @GetMapping("/search")
+    public String search(@RequestParam("term") String term, Model model) {
+        List<Event> events = eventService.searchEvents(term);
+        model.addAttribute("events", events);
+        return "search-results";
     }
-
-    @PostMapping("/register")
-    public String handleRegisterUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("user", user);
-            return "register";
-        }
-        System.out.println(user);
-        return "redirect:/login";
-    }
-
 }

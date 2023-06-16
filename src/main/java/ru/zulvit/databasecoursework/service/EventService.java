@@ -53,4 +53,8 @@ public class EventService {
     public void deleteEvent(Long eventId) {
         eventRepository.deleteById(eventId);
     }
+
+    public List<Event> searchEvents(String term) {
+        return eventRepository.findByTitleContaining(term);
+    }
 }

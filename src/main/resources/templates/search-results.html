@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Event List</title>
+    <title>Search Results</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container mt-5">
-    <h1>Event List</h1>
-    <form th:action="@{/search}" method="get">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search by event name" name="term">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Search</button>
-            </div>
-        </div>
-    </form>
-
+    <h1>Search Results</h1>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th><a th:href="@{/eventList(sort='name')}">Event Name</a></th>
-            <th><a th:href="@{/eventList(sort='date')}">Date</a></th>
-            <th><a th:href="@{/eventList(sort='time')}">Time</a></th>
+            <th>Event Name</th>
+            <th>Date</th>
+            <th>Time</th>
         </tr>
         </thead>
         <tbody>
@@ -36,10 +27,7 @@
         </tr>
         </tbody>
     </table>
-
-    <a href="/" class="btn btn-secondary">Back to Home</a>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
