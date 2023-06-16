@@ -49,6 +49,12 @@ public class EventController {
         return "redirect:/";
     }
 
+    @GetMapping("/deleteEvent")
+    public String deleteEvent(@RequestParam("id") Long eventId) {
+        eventService.deleteEvent(eventId);
+        return "redirect:/";
+    }
+
     @GetMapping("/eventList")
     public String getEventList(@RequestParam(required = false) String sort, Model model) {
         Sort sorting = Sort.unsorted();
@@ -89,7 +95,6 @@ public class EventController {
             return "register";
         }
         System.out.println(user);
-//        userService.registerUser(user);
         return "redirect:/login";
     }
 

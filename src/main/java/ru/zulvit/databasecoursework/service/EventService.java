@@ -49,4 +49,8 @@ public class EventService {
         Event event = EventMapper.INSTANCE.toEvent(eventDTO);
         eventRepository.save(event);
     }
+
+    public void deleteEvent(Long eventId) {
+        eventRepository.deleteById(eventId);
+    }
 }

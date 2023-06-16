@@ -25,6 +25,8 @@ public class Event {
     @Column(name = "end_time", nullable = false)
     private String endTime;
 
+
+
     public Long getEventId() {
         return eventId;
     }

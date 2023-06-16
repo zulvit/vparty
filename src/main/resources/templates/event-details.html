@@ -29,7 +29,10 @@
         </div>
     </div>
 
-    <a th:href="@{/editEvent(id=${event.eventId})}" class="btn btn-primary">Edit Event</a>
+    <div class="btn-group" role="group" aria-label="Event actions">
+        <a th:href="@{/editEvent(id=${event.eventId})}" class="btn btn-primary">Edit Event</a>
+        <a th:href="@{/deleteEvent(id=${event.eventId})}" class="btn btn-danger">Delete Event</a>
+    </div>
 
     <h2>Comments</h2>
     <form action="#" method="post">
@@ -40,7 +43,7 @@
         <button type="submit" class="btn btn-primary">Send</button>
     </form>
 
-    <a href="/" class="btn btn-secondary mt-4">Back to Home</a>
+    <button href="/" class="btn btn-secondary mt-4">Back to Home</button>
 
     <div class="mt-4">
         <h3>Previous Comments</h3>
