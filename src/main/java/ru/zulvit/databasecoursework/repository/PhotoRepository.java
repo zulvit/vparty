@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.zulvit.databasecoursework.model.Photo;
 
 @Repository
-public interface PhotoRepository extends JpaRepository<Photo, Integer> {
+public interface PhotoRepository extends JpaRepository<Photo, Long> {
 }

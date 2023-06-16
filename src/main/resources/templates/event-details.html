@@ -3,12 +3,23 @@
 <head>
     <title>Event Details</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .event-image {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="container mt-5">
     <h1 th:text="${event.title}" class="mb-4">Event Details</h1>
-    <div class="card">
+
+    <div class="card mb-4">
         <div class="card-body">
             <p><strong>ID:</strong> <span th:text="${event.eventId}">12345</span></p>
             <p><strong>Description:</strong> <span th:text="${event.description}">Lorem ipsum dolor sit amet</span></p>
@@ -17,9 +28,31 @@
             <p><strong>End Time:</strong> <span th:text="${event.endTime}">2023-06-15 05:00 PM</span></p>
         </div>
     </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <a th:href="@{/editEvent(id=${event.eventId})}" class="btn btn-primary">Edit Event</a>
+
+    <h2>Comments</h2>
+    <form action="#" method="post">
+        <div class="form-group">
+            <label for="comment">Leave a comment:</label>
+            <textarea id="comment" name="comment" class="form-control" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+
+    <a href="/" class="btn btn-secondary mt-4">Back to Home</a>
+
+    <div class="mt-4">
+        <h3>Previous Comments</h3>
+        <ul>
+            <li th:each="message : ${allMessages}" th:text="${message.text}"></li>
+        </ul>
+        <p th:if="${allMessages.isEmpty()}">No comments yet.</p>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

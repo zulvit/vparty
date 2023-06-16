@@ -1,30 +1,27 @@
-package ru.zulvit.databasecoursework.model;
+package ru.zulvit.databasecoursework.dto;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+import ru.zulvit.databasecoursework.model.Event;
+import ru.zulvit.databasecoursework.model.User;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "Messages")
-public class Message {
+public class MessageDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "message_id")
     private Long messageId;
 
-    @ManyToOne
-    @JoinColumn(name = "event_id", nullable = false)
+    @NotNull(message = "Event is required")
     private Event event;
 
-    @ManyToOne
-    @JoinColumn(name = "sender_id", nullable = false)
+    @NotNull(message = "Sender is required")
     private User sender;
 
-    @Column(name = "text", nullable = false)
+    @NotEmpty(message = "Text is required")
+    @Length(max = 1000, message = "Text should be less than 1000 characters")
     private String text;
 
-    @Column(name = "timestamp", nullable = false)
     private LocalDateTime timestamp;
 
     public Long getMessageId() {
@@ -69,7 +66,7 @@ public class Message {
 
     @Override
     public String toString() {
-        return "Message{" +
+        return "MessageDto{" +
                 "messageId=" + messageId +
                 ", event=" + event +
                 ", sender=" + sender +

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.zulvit.databasecoursework.model.Organizer;
 
 @Repository
-public interface OrganizerRepository extends JpaRepository<Organizer, Integer> {
+public interface OrganizerRepository extends JpaRepository<Organizer, Long> {
 }

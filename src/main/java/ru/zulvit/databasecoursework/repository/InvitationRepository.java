@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.zulvit.databasecoursework.model.Invitation;
 
 @Repository
-public interface InvitationRepository extends JpaRepository<Invitation, Integer> {
+public interface InvitationRepository extends JpaRepository<Invitation, Long> {
 }

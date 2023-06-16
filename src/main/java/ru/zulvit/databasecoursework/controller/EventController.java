@@ -3,6 +3,7 @@ package ru.zulvit.databasecoursework.controller;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,22 +49,32 @@ public class EventController {
         return "redirect:/";
     }
 
-
-    @GetMapping("/viewEvents")
+    @GetMapping("/eventList")
     public String getEventList(@RequestParam(required = false) String sort, Model model) {
-        List<EventDTO> events = eventService.getAllEvents();
-
-        // Здесь вы можете добавить логику сортировки списка мероприятий в зависимости от параметра sort
-
+        Sort sorting = Sort.unsorted();
+        if (sort != null) {
+            switch (sort) {
+                case "name":
+                    sorting = Sort.by("title");
+                    break;
+                case "date":
+                case "time":
+                    sorting = Sort.by("startTime");
+                    break;
+            }
+        }
+        List<EventDTO> events = eventService.getAllSortedEvents(sorting);
         model.addAttribute("events", events);
         return "view-events";
     }
 
-//    @GetMapping("/viewEvents")
-//    public String viewEvents(Model model) {
-//        model.addAttribute("user", new User());
-//        return "view-events";
-//    }
+    @GetMapping("/viewEvents")
+    public String getViewEvents(Model model) {
+        List<EventDTO> events = eventService.getAllEvents();
+
+        model.addAttribute("events", events);
+        return "view-events";
+    }
 
     @GetMapping("/register")
     public String registerUser(Model model) {
