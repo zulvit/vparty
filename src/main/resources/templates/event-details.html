@@ -30,18 +30,20 @@
     </div>
 
     <div class="btn-group" role="group" aria-label="Event actions">
-        <a th:href="@{/editEvent(id=${event.eventId})}" class="btn btn-primary">Edit Event</a>
-        <a th:href="@{/deleteEvent(id=${event.eventId})}" class="btn btn-danger">Delete Event</a>
+        <a th:href="@{/event/edit(id=${event.eventId})}" class="btn btn-primary">Edit Event</a>
+        <a th:href="@{/event/delete(id=${event.eventId})}" class="btn btn-danger">Delete Event</a>
     </div>
 
     <h2>Comments</h2>
-    <form action="#" method="post">
+    <form action="/event/details/comment" method="post">
         <div class="form-group">
             <label for="comment">Leave a comment:</label>
             <textarea id="comment" name="comment" class="form-control" rows="3"></textarea>
         </div>
+        <input type="hidden" name="id" th:value="${event.eventId}">
         <button type="submit" class="btn btn-primary">Send</button>
     </form>
+
 
     <button href="/" class="btn btn-secondary mt-4">Back to Home</button>
 

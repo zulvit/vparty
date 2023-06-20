@@ -49,9 +49,9 @@
 <div class="container mt-5">
     <h1>Welcome to Our Event Platform</h1>
     <p>Explore a variety of events happening near you. Share your passion, meet new people, learn something new, and have fun. Life is an event, make it memorable with our Event Platform.</p>
-    <a th:href="@{/createEvent}" class="btn btn-create-eventDTO btn-lg">Create Your Event</a>
+    <a th:href="@{/event/create}" class="btn btn-create-eventDTO btn-lg">Create Your Event</a>
     <!-- Кнопка "Просмотреть доступные мероприятия" -->
-    <a th:href="@{/viewEvents}" class="btn btn-primary btn-lg">View Available Events</a>
+    <a th:href="@{/event/view}" class="btn btn-primary btn-lg">View Available Events</a>
 
     <div id="demo" class="carousel slide mt-5" data-ride="carousel">
         <div class="carousel-inner">
@@ -67,7 +67,6 @@
                     <h5>Demo Image 2</h5>
                 </div>
             </div>
-            <!-- Добавьте еще слайды -->
         </div>
     </div>
 </div>

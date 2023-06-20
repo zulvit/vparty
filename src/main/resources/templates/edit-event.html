@@ -11,7 +11,7 @@
 <div class="container mt-5">
     <h1>Edit Event</h1>
 
-    <form action="#" method="post" th:action="@{/editEvent}" th:object="${event}">
+    <form action="#" method="post" th:action="@{/event/edit}" th:object="${event}">
         <input type="hidden" th:field="*{eventId}">
 
         <div class="form-group">

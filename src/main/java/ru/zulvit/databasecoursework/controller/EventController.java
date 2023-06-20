@@ -7,18 +7,16 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.zulvit.databasecoursework.dto.EventDTO;
 import ru.zulvit.databasecoursework.model.Event;
 import ru.zulvit.databasecoursework.service.EventService;
 
 import java.util.List;
 
-@Controller
 @Log4j2
+@Controller
+@RequestMapping("/event")
 public class EventController {
     private final EventService eventService;
 
@@ -27,18 +25,13 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
-
-    @GetMapping("/createEvent")
+    @GetMapping("/create")
     public String createEvent(Model model) {
         model.addAttribute("event", new EventDTO());
         return "create-event";
     }
 
-    @PostMapping("/createEvent")
+    @PostMapping("/create")
     public String handleCreateEvent(@Valid @ModelAttribute("event") EventDTO eventDTO, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("event", eventDTO);
@@ -49,24 +42,19 @@ public class EventController {
         return "redirect:/";
     }
 
-    @GetMapping("/deleteEvent")
+    @GetMapping("/delete")
     public String deleteEvent(@RequestParam("id") Long eventId) {
         eventService.deleteEvent(eventId);
         return "redirect:/";
     }
 
-    @GetMapping("/eventList")
+    @GetMapping("/list")
     public String getEventList(@RequestParam(required = false) String sort, Model model) {
         Sort sorting = Sort.unsorted();
         if (sort != null) {
             switch (sort) {
-                case "name":
-                    sorting = Sort.by("title");
-                    break;
-                case "date":
-                case "time":
-                    sorting = Sort.by("startTime");
-                    break;
+                case "name" -> sorting = Sort.by("title");
+                case "date", "time" -> sorting = Sort.by("startTime");
             }
         }
         List<EventDTO> events = eventService.getAllSortedEvents(sorting);
@@ -74,7 +62,7 @@ public class EventController {
         return "view-events";
     }
 
-    @GetMapping("/viewEvents")
+    @GetMapping("/view")
     public String getViewEvents(Model model) {
         List<EventDTO> events = eventService.getAllEvents();
 

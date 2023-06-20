@@ -22,7 +22,7 @@
             <td th:text="${event.startTime}"></td>
             <td th:text="${event.endTime}"></td>
             <td>
-                <a th:href="@{/eventDetails(id=${event.getEventId()})}" class="btn btn-primary">View Details</a>
+                <a th:href="@{/event/details(id=${event.getEventId()})}" class="btn btn-primary">View Details</a>
             </td>
         </tr>
         </tbody>

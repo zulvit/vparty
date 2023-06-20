@@ -8,7 +8,7 @@
 <body>
 <div class="container mt-5">
     <h1>Event List</h1>
-    <form th:action="@{/search}" method="get">
+    <form th:action="@{/event/search}" method="get">
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Search by event name" name="term">
             <div class="input-group-append">
@@ -20,9 +20,9 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th><a th:href="@{/eventList(sort='name')}">Event Name</a></th>
-            <th><a th:href="@{/eventList(sort='date')}">Date</a></th>
-            <th><a th:href="@{/eventList(sort='time')}">Time</a></th>
+            <th><a th:href="@{/event/list(sort='name')}">Event Name</a></th>
+            <th><a th:href="@{/event/List(sort='date')}">Date</a></th>
+            <th><a th:href="@{/event/list(sort='time')}">Time</a></th>
         </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
             <td th:text="${event.startTime}"></td>
             <td th:text="${event.endTime}"></td>
             <td>
-                <a th:href="@{/eventDetails(id=${event.getEventId()})}" class="btn btn-primary">View Details</a>
+                <a th:href="@{/event/details(id=${event.getEventId()})}" class="btn btn-primary">View Details</a>
             </td>
         </tr>
         </tbody>

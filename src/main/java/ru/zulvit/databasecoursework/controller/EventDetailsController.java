@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.zulvit.databasecoursework.dto.EventDTO;
 import ru.zulvit.databasecoursework.dto.MessageDTO;
@@ -21,6 +22,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
+@RequestMapping("/event/details")
 public class EventDetailsController {
     private final EventService eventService;
     private final MessageService messageService;
@@ -37,7 +39,7 @@ public class EventDetailsController {
         this.entityManager = entityManager;
     }
 
-    @GetMapping("/eventDetails")
+    @GetMapping
     public String getEventDetails(@RequestParam Long id, Model model) {
         EventDTO event = eventService.getEventById(id);
         List<MessageDTO> allMessages = messageService.findByEventId(event.getEventId());
@@ -47,7 +49,7 @@ public class EventDetailsController {
     }
 
     @Transactional
-    @PostMapping("/eventDetails")
+    @PostMapping("/comment")
     public String addComment(@RequestParam Long id, @RequestParam("comment") String commentText, Model model) {
         MessageDTO messageDTO = new MessageDTO();
         messageDTO.setText(commentText);
