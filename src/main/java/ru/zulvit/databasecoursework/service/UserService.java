@@ -1,14 +1,16 @@
 package ru.zulvit.databasecoursework.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.zulvit.databasecoursework.model.User;
 import ru.zulvit.databasecoursework.repository.UserRepository;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -40,4 +42,18 @@ public class UserService {
         user.setRegistrationDate(LocalDateTime.now());
         userRepository.save(user);
     }
+
+
+    public User getCurrentUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            String email = ((UserDetails) principal).getUsername();
+            return userRepository.findByEmail(email);
+        }
+
+        return null;
+    }
+
+
 }

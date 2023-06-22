@@ -50,4 +50,8 @@ public class MessageService {
         System.out.println(message);
         messageRepository.save(message);
     }
+
+    public List<Message> findMessagesByEvent(Long eventId) {
+        return messageRepository.findMessagesByEvent(eventId);
+    }
 }

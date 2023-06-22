@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Utils</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Admin Utils</h1>
+
+    <ul class="nav nav-tabs" id="adminTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="invitation-tab" data-toggle="tab" href="#invitation"
+               role="tab">Invitations</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="acceptedUser-tab" data-toggle="tab" href="#acceptedUser" role="tab">Accepted
+                Users</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="message-tab" data-toggle="tab" href="#message" role="tab">Messages</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="organizer-tab" data-toggle="tab" href="#organizer" role="tab">Organizers</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="adminTabContent">
+        <div class="tab-pane fade show active" id="invitation" role="tabpanel">
+            <form th:action="@{/utils/search/invitations}" method="get">
+                <div class="form-group">
+                    <label for="eventId1">Event ID:</label>
+                    <input id="eventId1" name="eventId" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="userId">User ID:</label>
+                    <input id="userId" name="userId" type="text" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            <ul th:if="${searchedInvitations != null}">
+                <li th:each="invitation : ${searchedInvitations}" th:text="${invitation}"></li>
+            </ul>
+            <p th:if="${searchedInvitations == null}">No invitations found.</p>
+            <p>This tab shows the Invitations. You can search for invitations by Event ID and User ID.</p>
+        </div>
+
+        <div class="tab-pane fade" id="acceptedUser" role="tabpanel">
+            <form th:action="@{/utils/search/acceptedUsers}" method="get">
+                <div class="form-group">
+                    <label for="eventId2">Event ID:</label>
+                    <input id="eventId2" name="eventId" type="text" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            <ul th:if="${acceptedUsers != null}">
+                <li th:each="user : ${acceptedUsers}" th:text="${user}"></li>
+            </ul>
+            <p th:if="${acceptedUsers == null}">No accepted users found.</p>
+            <p>This tab shows the Accepted Users. You can search for accepted users by Event ID.</p>
+        </div>
+
+        <div class="tab-pane fade" id="message" role="tabpanel">
+            <form th:action="@{/utils/search/messages}" method="get">
+                <div class="form-group">
+                    <label for="eventId3">Event ID:</label>
+                    <input id="eventId3" name="eventId" type="text" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            <ul th:if="${messages != null}">
+                <li th:each="message : ${messages}" th:text="${message}"></li>
+            </ul>
+            <p th:if="${messages == null}">No messages found.</p>
+        </div>
+
+        <div class="tab-pane fade" id="organizer" role="tabpanel">
+            <form th:action="@{/utils/search/organizers}" method="get">
+                <div class="form-group">
+                    <label for="eventId4">Event ID:</label>
+                    <input id="eventId4" name="eventId" type="text" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            <ul th:if="${organizers != null}">
+                <li th:each="organizer : ${organizers}" th:text="${organizer}"></li>
+            </ul>
+            <p th:if="${organizers == null}">No organizers found.</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

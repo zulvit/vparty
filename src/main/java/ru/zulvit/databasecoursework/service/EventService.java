@@ -5,7 +5,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ru.zulvit.databasecoursework.dto.EventDTO;
 import ru.zulvit.databasecoursework.mapper.EventMapper;
-import ru.zulvit.databasecoursework.model.Event;
+import ru.zulvit.databasecoursework.model.*;
 import ru.zulvit.databasecoursework.repository.EventRepository;
 
 import java.util.ArrayList;
@@ -57,4 +57,5 @@ public class EventService {
     public List<Event> searchEvents(String term) {
         return eventRepository.findByTitleContaining(term);
     }
+
 }

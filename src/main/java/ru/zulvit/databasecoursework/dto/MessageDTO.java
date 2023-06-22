@@ -1,7 +1,6 @@
 package ru.zulvit.databasecoursework.dto;
 
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import ru.zulvit.databasecoursework.model.Event;
 import ru.zulvit.databasecoursework.model.User;
@@ -12,10 +11,10 @@ public class MessageDTO {
 
     private Long messageId;
 
-    @NotNull(message = "Event is required")
+    @NotEmpty(message = "Event is required")
     private Event event;
 
-    @NotNull(message = "Sender is required")
+    @NotEmpty(message = "Sender is required")
     private User sender;
 
     @NotEmpty(message = "Text is required")

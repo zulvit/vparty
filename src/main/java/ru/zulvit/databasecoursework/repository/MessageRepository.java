@@ -12,4 +12,6 @@ import java.util.List;
 public interface MessageRepository extends JpaRepository<Message, Long> {
     @Query("SELECT m FROM Message m WHERE m.event.eventId = :eventId")
     List<Message> findByEventId(@Param("eventId") Long eventId);
+    @Query("SELECT m FROM Message m JOIN m.event e WHERE e.eventId = :eventId")
+    List<Message> findMessagesByEvent(@Param("eventId") Long eventId);
 }

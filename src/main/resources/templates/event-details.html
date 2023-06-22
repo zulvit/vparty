@@ -7,11 +7,12 @@
     <meta http-equiv="Pragma" content="no-cache">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
-        .event-image {
-            max-width: 100%;
-            max-height: 300px;
-            object-fit: cover;
-            margin-bottom: 20px;
+        .button-group {
+            margin-top: 10px;
+        }
+
+        .button-group .btn {
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -29,7 +30,42 @@
         </div>
     </div>
 
-    <div class="btn-group" role="group" aria-label="Event actions">
+    <div>
+        <button type="button" class="btn btn-primary mt-4" data-toggle="modal" data-target="#inviteModal">
+            Invite
+        </button>
+    </div>
+
+    <div class="modal fade" id="inviteModal" tabindex="-1" role="dialog" aria-labelledby="inviteModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="inviteModalLabel">Invite someone to the event</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="inviteForm" th:action="@{/invite/send}" method="post">
+                        <input type="hidden" th:value="${event.getEventId()}" name="eventId">
+                        <div class="form-group">
+                            <label for="recipient-email" class="col-form-label">Recipient Email:</label>
+                            <input type="text" class="form-control" id="recipient-email" name="email">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary"
+                            onclick="document.getElementById('inviteForm').submit();">Send Invite
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-group">
         <a th:href="@{/event/edit(id=${event.eventId})}" class="btn btn-primary">Edit Event</a>
         <a th:href="@{/event/delete(id=${event.eventId})}" class="btn btn-danger">Delete Event</a>
     </div>
@@ -54,10 +90,10 @@
         </ul>
         <p th:if="${allMessages.isEmpty()}">No comments yet.</p>
     </div>
+</div>
 
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
