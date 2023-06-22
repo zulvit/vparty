@@ -26,7 +26,7 @@ public class UserConfigInit implements ApplicationRunner {
             user.setName("Default");
             user.setLastName("User");
             user.setSurname("Surname");
-            user.setBirthday(LocalDateTime.now().minusYears(30));
+            user.setBirthday("123123.312.3");
             user.setEmail("defaultuser@example.com");
             user.setPassword("password123");
             user.setRegistrationDate(LocalDateTime.now());

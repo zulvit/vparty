@@ -32,10 +32,42 @@
             <td th:text="${event.endTime}"></td>
             <td>
                 <a th:href="@{/event/details(id=${event.getEventId()})}" class="btn btn-primary">View Details</a>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inviteModal">
+                    Invite
+                </button>
             </td>
         </tr>
         </tbody>
     </table>
+
+    <div class="modal fade" id="inviteModal" tabindex="-1" role="dialog" aria-labelledby="inviteModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="inviteModalLabel">Invite someone to the event</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="inviteForm" th:action="@{/invite/send}" method="post">
+                        <div class="form-group">
+                            <label for="recipient-email" class="col-form-label">Recipient Email:</label>
+                            <input type="text" class="form-control" id="recipient-email" name="email">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary"
+                            onclick="document.getElementById('inviteForm').submit();">Send Invite
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <a href="/" class="btn btn-secondary">Back to Home</a>
 </div>

@@ -28,10 +28,9 @@ public class User {
     @Column(name = "surname", nullable = false)
     private String surname;
 
-    @NotNull(message = "Birthday cannot be empty")
-    @Past(message = "Birthday must be in the past")
+    @NotBlank(message = "Birthday cannot be empty")
     @Column(name = "birthday", nullable = false)
-    private LocalDateTime birthday;
+    private String birthday;
 
     @NotBlank(message = "Email cannot be empty")
     @Email(message = "Email should be valid")
@@ -81,11 +80,11 @@ public class User {
         this.surname = surname;
     }
 
-    public LocalDateTime getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDateTime birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
